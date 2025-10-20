@@ -76,6 +76,7 @@ jobs:
         labels: ${{ steps.meta-dockerhub.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+      continue-on-error: true
 
     - name: Build and push Docker image to GHCR
       uses: docker/build-push-action@v5
