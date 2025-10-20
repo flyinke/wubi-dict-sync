@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=wubi_dict_sync_db
+      - POSTGRES_USER=wubi_user
+      - POSTGRES_PASSWORD=wubi_password
+    ports:
+      - "5434:5432"
+
+  wubi-dict-sync:
+    build: .
+    command: gunicorn wubi-dict-sync.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8002:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
