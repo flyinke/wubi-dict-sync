@@ -30,6 +30,9 @@ COPY . /app/
 RUN mkdir -p /app/staticfiles && \
     chown -R appuser:appuser /app
 
+# Collect static files as root user
+RUN python manage.py collectstatic --noinput
+
 # Add entrypoint script
 COPY entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh

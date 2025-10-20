@@ -6,11 +6,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_DB=wubi_dict_sync_db
-      - POSTGRES_USER=wubi_user
-      - POSTGRES_PASSWORD=wubi_password
+      - POSTGRES_DB=${POSTGRES_DB:-wubi_dict_sync_db}
+      - POSTGRES_USER=${POSTGRES_USER:-wubi_user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-wubi_password}
     ports:
-      - "5434:5432"
+      - "${POSTGRES_PORT:-5434}:5432"
 
   wubi-dict-sync:
     build: .
@@ -18,7 +18,13 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8002:8000"
+      - "${APP_PORT:-8002}:8000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-django-insecure-fallback-key-for-development}
+      - DEBUG=${DEBUG:-1}
+      - DATABASE_URL=${DATABASE_URL:-postgresql://${POSTGRES_USER:-wubi_user}:${POSTGRES_PASSWORD:-wubi_password}@${DB_HOST:-db}:${DB_PORT:-5432}/${POSTGRES_DB:-wubi_dict_sync_db}}
+      - DB_HOST=${DB_HOST:-db}
+      - DB_PORT=${DB_PORT:-5432}
     env_file:
       - .env
     depends_on:
