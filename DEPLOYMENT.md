@@ -15,7 +15,7 @@
 在您的 GitHub 仓库中配置以下 secrets：
 
 1. 进入 GitHub 仓库 → Settings → Secrets and variables → Actions
-2. 添加以下 secrets：
+2. 添加以下 Repository secrets：
    - `DOCKERHUB_USERNAME`: 您的 Docker Hub 用户名
    - `DOCKERHUB_TOKEN`: 您的 Docker Hub 访问令牌
 
