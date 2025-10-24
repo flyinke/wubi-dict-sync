@@ -136,6 +136,8 @@ docker compose exec wubi-dict-sync python manage.py createsuperuser
 
 #### 方式二：本地开发环境
 
+这种方式不需要 Docker，会自动使用 `SQLite` 数据库。
+
 1. 克隆仓库：
    ```bash
    git clone https://github.com/flyinke/wubi-dict-sync.git
@@ -155,33 +157,15 @@ docker compose exec wubi-dict-sync python manage.py createsuperuser
    pip install -r requirements.txt
    ```
 
-4. 配置环境变量：
-   ```bash
-   # 复制环境变量模板
-   cp .env.example .env
-   
-   # 编辑配置文件
-   nano .env
-   ```
-
-5. 运行数据库迁移：
+4. 运行数据库迁移：
    ```bash
    python manage.py migrate
    ```
 
-6. 收集静态文件：
-   ```bash
-   python manage.py collectstatic
-   ```
-
-7. 启动开发服务器：
+5. 启动开发服务器：
    ```bash
    python manage.py runserver
    ```
-
-8. 访问应用：
-   - API: http://localhost:8000/api/
-   - Admin: http://localhost:8000/admin/
 
 #### 开发环境常用命令
 
