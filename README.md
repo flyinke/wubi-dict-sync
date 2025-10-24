@@ -1,4 +1,4 @@
-#  五笔码表助手同步服务端 Django 版 
+#  五笔码表助手同步服务端 Django 版
 
 本项目是[五笔码表助手 for Rime](https://github.com/KyleBing/wubi-dict-editor) [后台](https://github.com/KyleBing/portal) 的 Django 实现，只包含了五笔字典同步和用户注册/登录功能。感谢原作者[KyleBing](https://github.com/KyleBing)
 
@@ -120,7 +120,7 @@ docker compose exec wubi-dict-sync python manage.py createsuperuser
    ```bash
    # 复制环境变量模板
    cp .env.example .env
-   
+
    # 编辑配置文件（可选）
    nano .env
    ```
@@ -153,16 +153,22 @@ docker compose exec wubi-dict-sync python manage.py createsuperuser
    ```
 
 3. 安装依赖：
+
+   项目使用不同的 `requirements` 文件来管理不同环境的依赖：
+   - `requirements.txt`: 供 Docker 生产环境使用，包含所有依赖。
+   - `requirements-dev.txt`: 供本地开发环境使用 (Windows, macOS, Linux)，仅包含运行开发服务器所需的基础依赖。
+
+   在本地开发时，请使用 `requirements-dev.txt`：
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements-dev.txt
    ```
 
-4. 运行数据库迁移：
+5. 运行数据库迁移：
    ```bash
    python manage.py migrate
    ```
 
-5. 启动开发服务器：
+6. 启动开发服务器：
    ```bash
    python manage.py runserver
    ```
