@@ -69,7 +69,8 @@ jobs:
     - name: Build and push Docker image to Docker Hub
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: ./backend
+        file: ./backend/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.meta-dockerhub.outputs.tags }}
@@ -81,7 +82,8 @@ jobs:
     - name: Build and push Docker image to GHCR
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: ./backend
+        file: ./backend/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.meta-ghcr.outputs.tags }}
