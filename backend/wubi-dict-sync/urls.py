@@ -18,8 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from api.views import home, register_view, login_view
 
 urlpatterns = [
+    path('', home, name='home'),
+    path('accounts/register/', register_view, name='register'),
+    path('accounts/login/', login_view, name='login'),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
 ]

@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login
 from django.db.models import Sum
+from django.shortcuts import render
 
 from .models import User, WubiDict, WubiCategory, WubiWord
 from .serializers import UserSerializer, WubiDictSerializer, WubiCategorySerializer, WubiWordSerializer
@@ -213,3 +214,12 @@ class WubiWordDestroyView(generics.DestroyAPIView):
     queryset = WubiWord.objects.all()
     serializer_class = WubiWordSerializer
     permission_classes = [IsAuthenticated]
+
+def home(request):
+    return render(request, 'home.html')
+
+def register_view(request):
+    return render(request, 'accounts/register.html')
+
+def login_view(request):
+    return render(request, 'accounts/login.html')
