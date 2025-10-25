@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="bg-white">
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">五笔字典同步</h1>
+        <p class="mt-6 text-lg leading-8 text-gray-600">一个用于同步不同设备间五笔输入法用户词典的工具。旨在解决用户在多台电脑上维护同一份自定义词库的烦恼。</p>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <a href="/accounts/login/" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">登录</a>
+          <a href="/accounts/register/" class="text-sm font-semibold leading-6 text-gray-900">注册 <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

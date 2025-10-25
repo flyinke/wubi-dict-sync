@@ -1,0 +1,51 @@
+{% load static %}
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}五笔字典同步{% endblock %}</title>
+    <link href="{% static 'output.css' %}" rel="stylesheet" />
+    <script src="{% static 'alpine.min.js' %}" defer></script>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="bg-gray-100 text-gray-800">
+    {% block header %}
+    <header class="bg-white shadow-md">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="flex items-center gap-2 text-slate-800 hover:text-slate-600 transition-colors">
+              <span class="text-xl font-bold">五笔字典同步</span>
+          </a>
+          <div class="flex items-center gap-3">
+            {% if user.is_authenticated %}
+              <a href="#" class="bg-slate-900 text-white text-sm px-4 py-2 rounded-full hover:bg-slate-700 transition-colors">
+                控制台
+              </a>
+            {% else %}
+              <a href="/accounts/login/" class="text-sm font-medium text-gray-600 hover:text-gray-900">登录</a>
+              <a href="/accounts/register/" class="bg-slate-900 text-white text-sm px-4 py-2 rounded-full hover:bg-slate-700 transition-colors">注册</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </header>
+    {% endblock %}
+
+    <main class="container py-6 mx-auto">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-slate-50 border-t border-slate-200 py-6 mt-12">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-sm text-slate-600">
+          © 2024 五笔字典同步. All rights reserved.
+          <span class="mx-2">|</span>
+          <span><a href="https://beian.miit.gov.cn/" target="_blank">沪ICP备2022000000号-1</a></span>
+        </p>
+      </div>
+    </footer>
+
+    {% block extra_body %}{% endblock %}
+  </body>
+</html>

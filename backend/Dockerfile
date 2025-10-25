@@ -13,6 +13,8 @@ WORKDIR /app
 # Install system dependencies including netcat
 RUN apt-get update && apt-get install -y \
     netcat-openbsd \
+    libpq-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
@@ -29,6 +31,9 @@ COPY . /app/
 # Create staticfiles directory and set permissions
 RUN mkdir -p /app/staticfiles && \
     chown -R appuser:appuser /app
+
+# Collect static files as root user
+RUN python manage.py collectstatic --noinput
 
 # Add entrypoint script
 COPY entrypoint.sh /app/
